@@ -4,8 +4,7 @@ import time
 
 SECONDS_WITH_WIFI_DISABLED = 60
 # Constants for the command prompt
-CMD_BASE = 'cmd {} "{}"'  # first is remain/terminate, then is enable/disable
-CMD_TERMINATE = '/c'  # terminate cmd after executing
+CMD_BASE = 'cmd /c "{}"'  # first is remain/terminate, then is enable/disable
 WIFI_CMD_BASE = 'wmic path win32_networkadapter where NetConnectionID="Wi-fI" call {}'
 WIFI_CMD_ENABLE = WIFI_CMD_BASE.format('enable')
 WIFI_CMD_DISABLE = WIFI_CMD_BASE.format('disable')
@@ -23,11 +22,11 @@ def execute_cmd(cmd):
 
 
 def turn_on_wifi():
-    execute_cmd(CMD_BASE.format(CMD_TERMINATE, WIFI_CMD_ENABLE))
+    execute_cmd(CMD_BASE.format(WIFI_CMD_ENABLE))
 
 
 def turn_off_wifi():
-    execute_cmd(CMD_BASE.format(CMD_TERMINATE, WIFI_CMD_DISABLE))
+    execute_cmd(CMD_BASE.format(WIFI_CMD_DISABLE))
 
 if __name__ == "__main__":
     main()
